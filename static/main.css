@@ -1,0 +1,46 @@
+* {
+    background: lightgrey;
+    font-family: 'Lato', sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6{
+    margin: 0;
+    padding: 0;
+}
+
+.h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+    background-color: transparent;
+}
+
+#wrapper {
+    margin: auto;
+    width: 1150px;
+    height: 100%;
+}
+
+.center {
+    text-align: center;
+    margin: auto;
+}
+
+.ptScore {
+    background: lightblue;
+    width: 500px;
+    height: 110px;
+    display: block;
+    padding: 10px;
+}
+
+.left {
+    text-align: left;
+    float: left;
+    background-color: transparent;
+}
+.right {
+    text-align: right;
+    float: right;
+    background-color: transparent;
+}
