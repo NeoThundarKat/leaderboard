@@ -4,7 +4,7 @@
         protected static $c;
         protected $s;
         public function __construct() {
-            static::$c = new PDO('mysql:host=localhost;dbname=leaderboard','root','ASATm4PeyGxf');
+            static::$c = new PDO('mysql:host=localhost;dbname=leaderboard','root','9xKzmAEzNMxs');
             static::$c->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
 
