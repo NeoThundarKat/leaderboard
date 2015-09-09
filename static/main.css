@@ -34,10 +34,15 @@ p {
 }
 th {
     text-align: left;
+    
+}
+tr {
+    transition:1s all;
 }
 td, th {
     position:relative;
     padding-left:20px;
+    color:inherit;
 }
 td:before, th:before {
     content:'|';

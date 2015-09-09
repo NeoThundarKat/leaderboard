@@ -76,7 +76,7 @@
             </tbody>
         </table>
         <p>mysql> select `time` from `timeleft`</p>
-        <p class="time">0:01:00</p>
+        <p class="time">2:00:00</p>
         <p>mysql> exit</p>
         <p>C:\NationalFinals> </p>
         <p style="position:relative;">C:\NationalFinals> <span class="blink show"></span></p>
@@ -91,15 +91,20 @@
                   success:function(res) {
                       
                       var retrieved = JSON.parse(res);
-                      console.log(res);
-                      console.log(JSON.stringify(data));
+                      //console.log(res);
+                      //console.log(JSON.stringify(data));
                       if(JSON.stringify(data) == res) {
+                          $('.competitors tr').css('color', 'white');
                           console.log("No change");
                       } else {
+                          console.log("CHANGE");
                           $('.competitors').html("");
+                          
+                          
+                          
                           $.each(retrieved, function(i, item) {
                               var noOfHash = Math.ceil((parseInt(item.score)/100)*20);
-                              $('.competitors').append("<tr>\
+                              $('.competitors').append("<tr data-comp-id="+item.id+">\
                         <td>"+item.id+"</td>\
                         <td>"+item.name+"</td>\
                         <td>"+item.provider+"</td>\
@@ -114,11 +119,38 @@
                         <td>----------------------------------</td>\
                     </tr>");
                           
-                          data = retrieved;
-                      }
+                          
+                          if(data.length > 0) {
+                              var currIds = getIds(data);
+                              var newIds = getIds(retrieved);
+                              for(var i = 0; i < currIds.length; i++) {
+                                  if(currIds[i] != newIds[i]) {
+                                      console.log((parseInt(currIds.indexOf(newIds[i]))+1) + " is now " + (i+1));
+
+                                     if((parseInt(currIds.indexOf(newIds[i]))+1) > (i+1)) {
+                                         console.log($('.competitors tr:eq('+i+')').css('color', 'green'))
+                                         console.log("has moved up");
+                                         
+                                         $('.competitors tr:eq('+i+')').css({color:'green'});
+                                     }
+                                      if((parseInt(currIds.indexOf(newIds[i]))+1) < (i+1)) {
+                                         console.log($('.competitors tr:eq('+i+')'))
+                                         console.log("has moved down");
+                                           $('.competitors tr:eq('+i+')').css({color:'red'});
+                                     }
+
+                                  }
+                              }
+                          }
+                          
+                          
+                          data = retrieved;                      
+                      } 
                   }
               })
             $('.blink').toggleClass("show");
+            
+            
             
             /*Timer*/
              var finish = false;
@@ -160,6 +192,14 @@
                 res.push(string);
             }
             return res.join("");
+        }
+        
+        function getIds(array) {
+            var res = [];
+            for(var i = 0; i < array.length; i++) {
+                res.push(array[i].id)
+            }
+            return res;
         }
       </script>
 </body>
